@@ -1,0 +1,48 @@
+import random
+
+class Square:
+    dlugosc_boku: int
+
+    def __init__(self, dlugosc_boku: int) -> None:
+        self.dlugosc_boku = dlugosc_boku
+
+    def area(self) -> int:
+        return self.dlugosc_boku * self.dlugosc_boku
+
+    def perimeter(self) -> int:
+        return 4 * self.dlugosc_boku
+
+    def __str__(self) -> str:
+        return f'Ta figura ma dlugosc boku: {self.dlugosc_boku}'
+
+
+class Traingle:
+    side: int
+    height: int
+
+    def __init__(self, side: int, height: int) -> None:
+        self.side = side
+        self.height = height
+
+    def area(self) -> float:
+        return self.side * self.height / 2
+
+    def perimeter(self) -> int:
+        return 3 * self.side
+
+listakwadratow = []
+listatrojkatow = []
+for x in range(10):
+    kwadrat = 'kwadrat{}'.format(x)
+    a = random.randint(11, 50)
+    kwadrat = Square(a)
+    listakwadratow.append(kwadrat)
+
+for y in range(25):
+    trojkat = 'trojkat{}'.format(y)
+    a = (int)random.randint(6, 10)
+    b = (int)random.randint(15,19)
+    trojkat = trojkat(a,b)
+    listatrojkatow.append(trojkat)
+
+
