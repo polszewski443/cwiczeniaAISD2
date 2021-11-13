@@ -4,10 +4,10 @@ class Square:
     def __init__(self, dlugosc_boku: int) -> None:
         self.dlugosc_boku = dlugosc_boku
 
-    def area(self, dlugosc_boku: int) -> int:
+    def area(self) -> int:
         return self.dlugosc_boku * self.dlugosc_boku
 
-    def perimeter(self, dlugosc_boku: int) -> int:
+    def perimeter(self) -> int:
         return 4 * self.dlugosc_boku
 
     def __str__(self) -> str:
@@ -17,5 +17,5 @@ class Square:
 kwadrat1 = Square(20)
 kwadrat2 = Square(15)
 
-print(kwadrat1.area(15))
-print(kwadrat2.perimeter(13))
+print(kwadrat1.area())
+print(kwadrat2.perimeter())
