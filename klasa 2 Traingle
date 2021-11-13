@@ -6,14 +6,14 @@ class Traingle:
         self.side = side
         self.height = height
 
-    def area(self, side: int, height: int) -> float:
-        return side * height / 2
+    def area(self) -> float:
+        return self.side * self.height / 2
 
-    def perimeter(self, side: int) -> int:
-        return 3 * side
+    def perimeter(self) -> int:
+        return 3 * self.side
 
-    trojkat1 = Traingle(20,30)
-    trojkat2 = Traingle(30,15)
+trojkat1 = Traingle(20, 30)
+trojkat2 = Traingle(30, 15)
 
-    print(trojkat1.area())
-    print(trojkat2.perimeter())
+print(trojkat1.area())
+print(trojkat2.perimeter())
