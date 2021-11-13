@@ -1,0 +1,19 @@
+class Traingle:
+    side: int
+    height: int
+
+    def __init__(self, side: int, height: int) -> None:
+        self.side = side
+        self.height = height
+
+    def area(self, side: int, height: int) -> float:
+        return side * height / 2
+
+    def perimeter(self, side: int) -> int:
+        return 3 * side
+
+    trojkat1 = Traingle(20,30)
+    trojkat2 = Traingle(30,15)
+
+    print(trojkat1.area())
+    print(trojkat2.perimeter())
