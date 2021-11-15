@@ -1,5 +1,6 @@
 from typing import Any
 
+
 class Node:
     def __init__(self, value=None, next=None):
         self.value = value
@@ -12,23 +13,46 @@ class LinkedList:
         self.tail = None
 
     def push(self, value):
-        newNode = Node(value)
-        newNode.next = self.head
-        self.head = newNode
+        newnode = Node(value)
+        newnode.next = self.head
+        self.head = newnode
 
     def append(self, value):
-        newNode = Node(value)
-        if (self.head):
+        newnode = Node(value)
+        if self.head:
             current = self.head
-            while (current.next):
+            while current.next:
                 current = current.next
-            current.next = newNode
+            current.next = newnode
         else:
-            self.head = newNode
+            self.head = newnode
+
+    def node(self, at):
+        if self.head is None:
+            return
+        current = self.head
+        howmany = 0
+        while howmany != at:
+            howmany += 1
+            current = current.next
+        return current.value
+
+    def insert(self, value, after):
+        if self.head is None:
+            return
+        current = self.head
+        howmany = 0
+        while howmany != after:
+            howmany += 1
+            current = current.next
+        newnode = Node(value)
+        newnode.next = current
+        current = newnode
+
 
     def show(self):
         current = self.head
-        while (current):
+        while current:
             print(current.value)
             current = current.next
 
@@ -44,16 +68,16 @@ class LinkedList:
             previous.next = None
         return current
 
-    def remove(self, after: Node):
 
 list = LinkedList()
 list.append(3)
 list.append(4)
 list.push(1)
-list.push(2)
+list.push(6)
 list.append(5)
 list.show()
+print("")
 list.remove_last()
 list.show()
-
-
+print("")
+print(list.node(0))
