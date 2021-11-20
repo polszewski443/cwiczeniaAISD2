@@ -1,6 +1,3 @@
-from typing import Any
-
-
 class Node:
     def __init__(self, value=None, next=None):
         self.value = value
@@ -11,11 +8,13 @@ class LinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
+        self.length = 0
 
     def push(self, value):
         newnode = Node(value)
         newnode.next = self.head
         self.head = newnode
+        self.length += 1
 
     def append(self, value):
         newnode = Node(value)
@@ -26,35 +25,41 @@ class LinkedList:
             current.next = newnode
         else:
             self.head = newnode
+        self.length += 1
 
-    def node(self, at):
+    def node(self, index):
+        if index >= self.length:
+            return
         if self.head is None:
             return
         current = self.head
         howmany = 0
-        while howmany != at:
+        while howmany != index:
             howmany += 1
             current = current.next
         return current.value
 
-    def insert(self, value, after):
-        if self.head is None:
-            return
-        current = self.head
-        howmany = 0
-        while howmany != after:
-            howmany += 1
-            current = current.next
+    def insert(self, after, value):
         newnode = Node(value)
-        newnode.next = current
-        current = newnode
 
+        if self.head is None:
+            self.head = newnode
+        else:
+            current = self.head
+            count = 1
+            while current is not None and count < after:
+                current = current.next
+                count += 1
+            newnode.next = current.next
+            current.next = newnode
+        self.length += 1
 
-    def show(self):
+    def pop(self):
         current = self.head
-        while current:
-            print(current.value)
-            current = current.next
+        if self.head is not None:
+            self.head = self.head.next
+            self.length -= 1
+        return current.value
 
     def remove_last(self):
         if self.head is None:
@@ -66,18 +71,61 @@ class LinkedList:
             current = current.next
         if previous:
             previous.next = None
-        return current
+        self.length -= 1
+        return current.value
+
+    def remove(self, index):
+        if self.head is None:
+            return
+        current = self.head
+        if (index+1) == 0:
+            self.head = current.next
+            current = None
+            return
+        for i in range(index):
+            current = current.next
+            if current is None:
+                break
+        if current is None:
+            return
+        if current.next is None:
+            return
+        next = current.next.next
+        current.next = None
+        current.next = next
+        self.length -= 1
+
+    def print(self):
+        current = self.head
+        while current is not None:
+            print(current.value, "->", end=" ")
+            current = current.next
+        print("None")
+
+    def len(self):
+        return self.length
 
 
-list = LinkedList()
-list.append(3)
-list.append(4)
-list.push(1)
-list.push(6)
-list.append(5)
-list.show()
-print("")
-list.remove_last()
-list.show()
-print("")
-print(list.node(0))
+class Stack:
+    _storage: LinkedList
+
+    def __init__(self):
+        self.element = []
+
+    def push(self, value):
+        self._storage.push(value)
+
+    def pop(self):
+        self._storage.pop()
+
+    def print(self):
+        self._storage.print()
+
+    def len(self):
+        self._storage.len()
+
+
+stack = Stack()
+stack.push(3)
+stack.push(10)
+stack.print()
